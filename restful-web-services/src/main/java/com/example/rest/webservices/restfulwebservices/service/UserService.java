@@ -30,7 +30,7 @@ public class UserService {
 		String message;
 		users.add(user);
 		message="user is added in the list";
-		loggerConfig.getLoggerObj().info(message);
+//		loggerConfig.getLoggerObj().info(message);
 		return message;
 	}
 
