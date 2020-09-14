@@ -7,21 +7,20 @@ import org.springframework.stereotype.Service;
 
 import com.example.rest.webservices.restfulwebservices.entity.User;
 
-import utility.logger.LoggerConfig;
+import utility.logger.LogHelper;
+//import utility.logger.LoggerConfig;
 
 @Service
 public class UserService {
 
 	public List<User> users = new ArrayList<User>();
 	
-	public LoggerConfig loggerConfig = new LoggerConfig();
-	
 	public List<User> getAllUsers()
 	{
 		if(users.isEmpty())
-			loggerConfig.getLoggerObj().warn("Please add atleast one user in the list");
+			LogHelper.warn(UserService.class ,"Please add atleast one user in the list");
 		else
-			loggerConfig.getLoggerObj().info("List of users are " + users);
+			LogHelper.info(UserService.class, "List of users are " + users);
 		return users;
 	}
 	
@@ -30,7 +29,7 @@ public class UserService {
 		String message;
 		users.add(user);
 		message="user is added in the list";
-//		loggerConfig.getLoggerObj().info(message);
+		LogHelper.info(UserService.class,message);
 		return message;
 	}
 
