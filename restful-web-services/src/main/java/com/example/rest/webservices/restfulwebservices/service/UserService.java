@@ -27,6 +27,15 @@ public class UserService {
 	public String addUser(User user)
 	{
 		String message;
+		for(User userCheck: users)
+		{
+			if(userCheck.getId()==user.getId())
+			{
+				throw new EntityAlreadyExistException("User Already Exist");
+			}
+				
+				
+		}
 		users.add(user);
 		message="user is added in the list";
 		LogHelper.info(UserService.class,message);
@@ -38,9 +47,14 @@ public class UserService {
 		User userById = null;
 		for(User user: users)
 		{
+			
 			if(user.getId()==id)
 				userById = user;
 				
+		}
+		if(userById == null)
+		{
+			throw new EntityNotFoundException("Entity Not Found");
 		}
 		
 		return userById;
