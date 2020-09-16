@@ -7,16 +7,21 @@ import org.springframework.stereotype.Service;
 
 import com.example.rest.webservices.restfulwebservices.entity.User;
 
+import utility.exceptionhandler.runtimeexception.EntityAlreadyExistException;
+import utility.exceptionhandler.runtimeexception.EntityNotFoundException;
 import utility.logger.LogHelper;
-//import utility.logger.LoggerConfig;
 
+/**
+ * @author mangl
+ * User Service
+ *
+ */
 @Service
 public class UserService {
-
+	
 	public List<User> users = new ArrayList<User>();
 	
-	public List<User> getAllUsers()
-	{
+	public List<User> getAllUsers(){
 		if(users.isEmpty())
 			LogHelper.warn(UserService.class ,"Please add atleast one user in the list");
 		else
@@ -24,17 +29,12 @@ public class UserService {
 		return users;
 	}
 	
-	public String addUser(User user)
-	{
+	public String addUser(User user){
 		String message;
-		for(User userCheck: users)
-		{
-			if(userCheck.getId()==user.getId())
-			{
+		for(User userCheck: users){
+			if(userCheck.getId()==user.getId()){
 				throw new EntityAlreadyExistException("User Already Exist");
-			}
-				
-				
+			}				
 		}
 		users.add(user);
 		message="user is added in the list";
@@ -42,21 +42,16 @@ public class UserService {
 		return message;
 	}
 
-	public User getUserById(int id) {
+	public User getUserById(int id){
 		// TODO Auto-generated method stub
 		User userById = null;
-		for(User user: users)
-		{
-			
+		for(User user: users){			
 			if(user.getId()==id)
-				userById = user;
-				
+				userById = user;			
 		}
-		if(userById == null)
-		{
+		if(userById == null){
 			throw new EntityNotFoundException("Entity Not Found");
 		}
-		
 		return userById;
 	}
 }
