@@ -8,6 +8,11 @@ public class User {
 	private int id;
 	private String name;
 	private String password;
+	
+	public User()
+	{
+		
+	}
 	public User(int id, String name) {
 //		super();
 		this.id = id;
