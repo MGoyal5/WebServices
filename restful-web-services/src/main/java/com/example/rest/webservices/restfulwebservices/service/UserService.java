@@ -7,15 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.rest.webservices.restfulwebservices.entity.User;
 
-import utility.exceptionhandler.runtimeexception.EntityAlreadyExistException;
-import utility.exceptionhandler.runtimeexception.EntityNotFoundException;
+import utility.constants.ErrorStatus;
+import utility.exceptionhandler.runtimeexception.IposException;
 import utility.logger.LogHelper;
 
-/**
- * @author mangl
- * User Service
- *
- */
+
 @Service
 public class UserService {
 	
@@ -33,7 +29,7 @@ public class UserService {
 		String message;
 		for(User userCheck: users){
 			if(userCheck.getId()==user.getId()){
-				throw new EntityAlreadyExistException("User Already Exist");
+				throw new IposException(ErrorStatus.ENTITYALREADYEXIST.getReasonPhrase());
 			}				
 		}
 		users.add(user);
@@ -50,7 +46,7 @@ public class UserService {
 				userById = user;			
 		}
 		if(userById == null){
-			throw new EntityNotFoundException("Entity Not Found");
+			throw new IposException(ErrorStatus.ENTITYNOTFOUND.getReasonPhrase());
 		}
 		return userById;
 	}
