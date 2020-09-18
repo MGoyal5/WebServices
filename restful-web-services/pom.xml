@@ -58,16 +58,7 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		<dependency>
-		  <groupId>com.fasterxml.jackson.dataformat</groupId>
-		  <artifactId>jackson-dataformat-xml</artifactId>
-		</dependency>		 
-		<dependency>
-		  <groupId>com.github.derjust</groupId>
-		  <artifactId>spring-data-dynamodb</artifactId>
-		  <version>4.5.0</version>
-		</dependency>
+		</dependency>		
     	 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -94,6 +85,15 @@
 	                <failOnMissingWebXml>false</failOnMissingWebXml>
 	            </configuration>
 	        </plugin>
+	        <plugin>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <version>2.0.2</version>
+	            <configuration>
+	                <source>11</source>
+	                <target>11</target>
+	            </configuration>
+	        </plugin>
+	        
 		</plugins>
 	</build>
 
