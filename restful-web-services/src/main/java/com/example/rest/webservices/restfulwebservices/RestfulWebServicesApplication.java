@@ -53,9 +53,5 @@ public class RestfulWebServicesApplication {
 	public CustomeRequestLoggingFilter customeRequestLoggingFilter() {
 		return new CustomeRequestLoggingFilter();
 	}
-	
-	@Bean
-	public PropertyHandler propertyHandler() {
-		return new PropertyHandler();
-	}
+
 }
