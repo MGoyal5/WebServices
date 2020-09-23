@@ -3,6 +3,7 @@ package com.example.rest.webservices.restfulwebservices.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.rest.webservices.restfulwebservices.entity.User;
@@ -10,10 +11,14 @@ import com.example.rest.webservices.restfulwebservices.entity.User;
 import utility.constants.ErrorStatus;
 import utility.exceptionhandler.runtimeexception.IposException;
 import utility.logger.LogHelper;
+import utility.property.PropertyHandler;
 
 
 @Service
 public class UserService {
+	
+	@Autowired
+	private PropertyHandler propertyHandler;
 	
 	public List<User> users = new ArrayList<User>();
 	
@@ -27,6 +32,7 @@ public class UserService {
 	
 	public String addUser(User user){
 		String message;
+		System.out.println("name is " + propertyHandler.getPropertyValue("name"));
 		for(User userCheck: users){
 			if(userCheck.getId()==user.getId()){
 				throw new IposException(ErrorStatus.ENTITYALREADYEXIST.getReasonPhrase());
